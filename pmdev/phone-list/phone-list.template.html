@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <p>Search:<input ng-model="$ctrl.query"></p>
+            <p>
+                Sort by:
+                <select ng-model="$ctrl.orderProp">
+                    <option value="name">Alphabetical</option> <!--这里的value所对应的值将是排序依据-->
+                    <option value="age">Newest</option>
+                </select>
+            </p>
+
+
+        </div>
+        <div class="col-md-10">
+            <ul>
+                <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy: $ctrl.orderProp" class="thumbnail">
+                    <a href class="thumb">
+                        <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}">
+                    </a>
+                    <a href >{{phone.name}}</a>
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

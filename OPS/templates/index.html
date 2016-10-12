@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' )}}" media="all">
+    {% block head %}{% endblock %}
+    <!-- <script type="text/javascript" src="/static/jquery-1.6.4.min.js"></script> -->
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            {% block header %}{% endblock %}
+        </div>
+        <div id="nav">
+            <div id="logo"></div>
+            <div id="menu" class="menu-v">
+                <ul>
+                    <li><a href="/member">人员组织结构</a></li>
+                    <li><a href="/project">系统信息</a></li>
+                    <li><a href="/#">Report</a>
+                        <ul>
+                            <li><a href="">weekly</a></li>
+                            <li><a href="">monthly</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}{% endblock%}
+        </div>
+    </div>
+</body>
+</html>

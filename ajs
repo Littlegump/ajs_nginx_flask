@@ -1,0 +1,34 @@
+server {
+    listen       1111;
+    server_name  abc.com;
+    sendfile off;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/log/host.access.log  main;
+
+    location ~* \.(eot|otf|ttf|woff|svg)$ {
+        add_header Access-Control-Allow-Origin *;
+    }
+
+    # root   /usr/share/nginx/html;
+    root  /home/xuanxuan/pmdev;
+    index webapp.html;
+    location / {
+        try_files $uri$args $uri$args/ $uri webapp.html =404; 
+    }
+
+    location ~ ^/_v\d+/(.*)$ {
+        try_files /$1 =404;
+    }
+
+    location /proxy/webapp {
+        proxy_pass http://localhost:1234/test;
+        proxy_redirect default;
+    }
+
+    location /proxy/wiki {
+        proxy_pass https://sawiki2.nie.netease.com/editor/content;
+        proxy_redirect default;
+    } 
+
+}
